@@ -27,7 +27,7 @@ services:
       - key: JWT_REFRESH_EXPIRE
         value: 7d
       - key: CLIENT_URL
-        value: https://remarket-app.vercel.app
+        value: https://farhanrangara06.github.io
       - key: COOKIE_SAME_SITE
         value: none
       - key: CLOUDINARY_CLOUD_NAME
