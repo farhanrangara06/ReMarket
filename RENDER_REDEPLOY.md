@@ -1,6 +1,16 @@
 # Render Redeploy (fix failed deployment)
 
-Your old `remarket-api.onrender.com` is a **different/wrong app** (no `/api/health`).
+## MongoDB Atlas fix (REQUIRED if you see SSL / whitelist errors)
+
+1. Go to **[cloud.mongodb.com](https://cloud.mongodb.com)** → your project
+2. **Network Access** (left sidebar) → **+ Add IP Address**
+3. Click **Allow Access from Anywhere** → adds `0.0.0.0/0`
+4. Click **Confirm** → wait 1–2 minutes
+5. On Render → **Manual Deploy** → Deploy latest commit
+
+Without `0.0.0.0/0`, Render cannot reach Atlas and deploy fails with SSL errors.
+
+---
 
 ## Deploy the correct backend (3 env vars only)
 
