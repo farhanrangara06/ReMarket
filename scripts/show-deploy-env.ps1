@@ -32,12 +32,7 @@ Write-Host "COOKIE_SAME_SITE=none"
 Write-Host "CLOUDINARY_CLOUD_NAME=$($vars['CLOUDINARY_CLOUD_NAME'])"
 Write-Host "CLOUDINARY_API_KEY=$($vars['CLOUDINARY_API_KEY'])"
 Write-Host "CLOUDINARY_API_SECRET=$($vars['CLOUDINARY_API_SECRET'])"
-Write-Host "SMTP_HOST=$($vars['SMTP_HOST'])"
-Write-Host "SMTP_PORT=$($vars['SMTP_PORT'])"
-Write-Host "SMTP_SECURE=$($vars['SMTP_SECURE'])"
-Write-Host "SMTP_USER=$($vars['SMTP_USER'])"
-Write-Host "SMTP_PASS=$($vars['SMTP_PASS'])"
-Write-Host "EMAIL_FROM=$($vars['EMAIL_FROM'])"
+Write-Host "# SMTP skipped - Render FREE tier blocks port 587. Email auto-disabled."
 Write-Host "`n=== VERCEL env var ===" -ForegroundColor Cyan
 Write-Host "VITE_API_URL=https://remarket-api.onrender.com/api"
 Write-Host "`n(Update CLIENT_URL on Render after you get your Vercel URL)`n" -ForegroundColor Yellow

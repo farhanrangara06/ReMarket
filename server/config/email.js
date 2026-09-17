@@ -2,12 +2,19 @@ import nodemailer from 'nodemailer';
 import { isProduction } from './env.js';
 import { getClientUrls } from './env.js';
 
-export const isEmailEnabled = () =>
-  !!(
-    process.env.SMTP_HOST?.trim() &&
-    process.env.SMTP_USER?.trim() &&
-    process.env.SMTP_PASS?.trim()
-  );
+const isPlaceholder = (value) => {
+  const v = value?.trim().toLowerCase() || '';
+  return !v || v.includes('your@') || v.includes('your_app') || v.includes('yourdomain');
+};
+
+export const isEmailEnabled = () => {
+  const host = process.env.SMTP_HOST?.trim();
+  const user = process.env.SMTP_USER?.trim();
+  const pass = process.env.SMTP_PASS?.trim();
+  if (!host || !user || !pass) return false;
+  if (isPlaceholder(user) || isPlaceholder(pass)) return false;
+  return true;
+};
 
 export const getEmailFrom = () =>
   process.env.EMAIL_FROM || process.env.SMTP_USER || 'noreply@remarket.app';

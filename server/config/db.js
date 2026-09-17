@@ -1,14 +1,21 @@
 import mongoose from 'mongoose';
 
-const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(process.env.MONGO_URI, {
-      serverSelectionTimeoutMS: 10000,
-    });
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
-  } catch (error) {
-    console.error(`MongoDB Connection Error: ${error.message}`);
-    process.exit(1);
+const connectDB = async (retries = 5, delayMs = 5000) => {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const conn = await mongoose.connect(process.env.MONGO_URI, {
+        serverSelectionTimeoutMS: 15000,
+      });
+      console.log(`MongoDB Connected: ${conn.connection.host}`);
+      return;
+    } catch (error) {
+      console.error(`MongoDB connection attempt ${attempt}/${retries} failed: ${error.message}`);
+      if (attempt === retries) {
+        console.error('MongoDB Connection Error: all retries exhausted');
+        process.exit(1);
+      }
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
+    }
   }
 };
 

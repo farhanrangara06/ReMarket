@@ -1,15 +1,14 @@
 # ReMarket API — Render Blueprint
-# Docs: https://render.com/docs/blueprint-spec
-# Deploy: connect this repo on Render → New → Blueprint → select render.yaml
+# Deploy: dashboard.render.com → New → Blueprint → farhanrangara06/ReMarket
 
 services:
   - type: web
     name: remarket-api
     runtime: node
-    region: singapore
+    region: oregon
     plan: free
     rootDir: server
-    buildCommand: npm install
+    buildCommand: npm ci
     startCommand: npm start
     healthCheckPath: /api/health
     envVars:
@@ -28,7 +27,7 @@ services:
       - key: JWT_REFRESH_EXPIRE
         value: 7d
       - key: CLIENT_URL
-        sync: false
+        value: https://remarket-app.vercel.app
       - key: COOKIE_SAME_SITE
         value: none
       - key: CLOUDINARY_CLOUD_NAME
@@ -36,16 +35,4 @@ services:
       - key: CLOUDINARY_API_KEY
         sync: false
       - key: CLOUDINARY_API_SECRET
-        sync: false
-      - key: SMTP_HOST
-        sync: false
-      - key: SMTP_PORT
-        value: 587
-      - key: SMTP_SECURE
-        value: false
-      - key: SMTP_USER
-        sync: false
-      - key: SMTP_PASS
-        sync: false
-      - key: EMAIL_FROM
         sync: false
