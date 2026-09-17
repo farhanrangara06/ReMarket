@@ -14,12 +14,17 @@ Get-Content $envFile | ForEach-Object {
     if ($parts.Count -eq 2) { $vars[$parts[0].Trim()] = $parts[1].Trim() }
 }
 
-Write-Host "`n=== COPY THESE INTO RENDER → Environment ===" -ForegroundColor Cyan
+function Get-EnvOrDefault($key, $default) {
+    if ($vars.ContainsKey($key) -and $vars[$key]) { return $vars[$key] }
+    return $default
+}
+
+Write-Host "`n=== COPY THESE INTO RENDER -> Environment ===" -ForegroundColor Cyan
 Write-Host "NODE_ENV=production"
 Write-Host "PORT=5000"
-Write-Host "MONGO_URI=$($vars['MONGO_URI'])"
-Write-Host "JWT_SECRET=$($vars['JWT_SECRET'])"
-Write-Host "JWT_REFRESH_SECRET=$($vars['JWT_REFRESH_SECRET'] ?? 'GENERATE_A_32_CHAR_RANDOM_STRING')"
+Write-Host "MONGO_URI=$(Get-EnvOrDefault 'MONGO_URI' '')"
+Write-Host "JWT_SECRET=$(Get-EnvOrDefault 'JWT_SECRET' '')"
+Write-Host "JWT_REFRESH_SECRET=$(Get-EnvOrDefault 'JWT_REFRESH_SECRET' 'GENERATE_A_32_CHAR_RANDOM_STRING')"
 Write-Host "JWT_EXPIRE=15m"
 Write-Host "JWT_REFRESH_EXPIRE=7d"
 Write-Host "CLIENT_URL=https://YOUR-VERCEL-URL.vercel.app"
