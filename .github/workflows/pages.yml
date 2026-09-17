@@ -32,7 +32,7 @@ jobs:
       - name: Install and build
         working-directory: client
         env:
-          VITE_API_URL: https://remarket-api.onrender.com/api
+          VITE_API_URL: https://remarket-backend.onrender.com/api
           GITHUB_PAGES: 'true'
         run: |
           npm ci

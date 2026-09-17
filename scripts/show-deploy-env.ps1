@@ -34,5 +34,5 @@ Write-Host "CLOUDINARY_API_KEY=$($vars['CLOUDINARY_API_KEY'])"
 Write-Host "CLOUDINARY_API_SECRET=$($vars['CLOUDINARY_API_SECRET'])"
 Write-Host "# SMTP skipped - Render FREE tier blocks port 587. Email auto-disabled."
 Write-Host "`n=== VERCEL env var ===" -ForegroundColor Cyan
-Write-Host "VITE_API_URL=https://remarket-api.onrender.com/api"
+Write-Host "VITE_API_URL=https://remarket-backend.onrender.com/api"
 Write-Host "`n(Update CLIENT_URL on Render after you get your Vercel URL)`n" -ForegroundColor Yellow

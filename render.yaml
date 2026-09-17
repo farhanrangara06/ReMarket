@@ -3,7 +3,7 @@
 
 services:
   - type: web
-    name: remarket-api
+    name: remarket-backend
     runtime: node
     region: oregon
     plan: free
